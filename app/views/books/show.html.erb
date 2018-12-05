@@ -1,0 +1,9 @@
+<h1>Book Detail</h1>
+
+<%= @book.title %>
+<%= @book.opinion %>
+
+<% if @user.id == current_user.id %>
+<%= link_to "Edit" %>
+<%= link_to "Destroy", method: :delete, "data-confirm" => "Are you sure?" %>
+<% end %>
