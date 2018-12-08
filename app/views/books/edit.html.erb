@@ -1,1 +1,38 @@
-edit.html.erb
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3">
+    </div>
+    <div class="col-lg-6">
+		<div class="main">
+			<div class="main-content">
+
+				<h1> Editing Book</h1>
+
+				<% if @book.errors.any? %>  <!-- form forの@bookに合わせる -->
+				  <div id="error_explanation" class="alert-danger">
+				    <h2><%= @book.errors.count %> errors prohibited this obj from being saved:</h2>
+				    <ul>
+				      <% @book.errors.full_messages.each do |message| %>
+				        <li><%= message %></li>
+				      <% end %>
+				    </ul>
+				  </div>
+				<% end %>
+
+				<%= form_for(@book) do |f| %>
+					<h5> Title</h5>
+					<%= f.text_field :title, class: "col-xs-12 book_title" %>
+
+					<h5 class="edit-option"> Opinion</h5>
+					<%= f.text_area :opinion, class: "col-xs-12 book_body" %>
+
+					<p><%= f.submit 'Update Book', class: "btn btn-primary col-xs-12 update-book"%></p>
+				<% end %>
+
+				<%= link_to 'Show', book_path(@book), class: "book_#{@book.id}" %> |
+				<%= link_to 'Back', books_path, class: "back" %>
+			</div>
+		</div>
+	</div>
+  </div>
+</div>

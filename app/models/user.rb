@@ -8,4 +8,10 @@ class User < ApplicationRecord
 
   attachment :profile_image
 
+  validates :name, presence: true
+  validates :name, length: { in: 2..20 }
+  validates :introduction, length: { in: 0..50 }, on: :update
+
+  validates :name,uniqueness: true
+
 end

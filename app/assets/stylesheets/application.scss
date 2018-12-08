@@ -13,3 +13,62 @@
  *= require_tree .
  *= require_self
  */
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+
+
+.navbar-default {
+	border-radius: 0;
+	border: none;
+	background-color: #1f1f1f;
+}
+
+.navbar-header {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.navbar-brand {
+	padding: 5px 0 0 15px;
+	font-size: 20px;
+}
+
+.notice, .alert, .update, .create, .destroy {
+	color: green;
+}
+
+.sign_up_btn {
+    margin-top: 10px;
+}
+
+.bookers-about-title {
+	font-weight: bold;
+}
+
+footer {
+	text-align: right;
+	padding-right: 150px;
+}
+
+a {
+	color: #696969;
+}
+
+a:hover {
+	color: red;
+}
+
+.bookers-header-title {
+	display: inline;
+	color: #fff;
+	text-align: top;
+}
+
+.alert-danger {
+	color: red;
+	background-color: white;
+}
+
+#error_explanation {
+	color: red;
+}

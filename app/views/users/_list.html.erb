@@ -1,51 +1,32 @@
-<!-- 全体共通view -->
-<!DOCTYPE html>
-<html>
-  <head>
-    <%= csrf_meta_tags %>
+<h2> User info</h2>
+<%= attachment_image_tag user, :profile_image, size: "100x100" , format: 'jpeg', fallback: "no_image.jpg", class: "user_image" %>
+<table class="table table">
+  <tr>
+    <th> name</th>
+    <td><%= user.name %></td>
+  </tr>
+  <tr>
+    <th> introduction</th>
+    <td><%= user.introduction %></td>
+  </tr>
+</table>
+<% if user.id == current_user.id %>
+  <%= link_to edit_user_path(user), class: "btn btn-default btn-block edit_user_#{user.id}" do %>
+  <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+  <% end %>
+<% else %>
+  <%= link_to user_path(current_user), class: "btn btn-default btn-block user_#{current_user.id}" do %>
+  <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+  <% end %>
+<% end %>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bookers</title>
-    <link href='https://fonts.googleapis.com/css?family=Raleway:400,600,700' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
-  </head>
+<h2> New book</h2>
 
-  <body>
+<%= form_for(book) do |f| %>
+  <h5> Title</h5>
+  <%= f.text_field :title, class: "col-xs-12 book_title" %>
 
-    <div class="header" id="header">
-      <nav class="navbar navbar-main navbar-shadow" role="navigation" id="slide-nav">
-        <div class="container relative">
-          <div class="navbar-header">
-            <a class="navbar-logo" href="/">
-            </a>
-
-          </div>
-          <div id="slidemenu">
-            <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn">
-              <% if user_signed_in? %>
-                <li class="">
-                  <%= link_to 'Home', user_path(current_user.id) %>
-                </li>
-                <li class="">
-                  <%= link_to 'Users', users_path %>
-                </li>
-                <li class="">
-                  <!-- ↓以下のコードは、5章で正しいroutingに書き直します。 -->
-                  <%= link_to 'Books', books_path %>
-                </li>
-              <% else %>
-                <li class="">
-                  <%= link_to "logout" %>
-                </li>
-                <li class="">
-                  <%= link_to "ログイン", new_user_session_path %>
-                </li>
-              <% end %>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </div>
+  <h5> Opinion</h5>
+  <%= f.text_area :opinion, class: "col-xs-12 book_body" %>
+  <%= f.submit 'Create Book', class: "btn btn-primary btn-sm btn-block" %>
+<% end %>
