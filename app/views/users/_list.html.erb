@@ -10,18 +10,18 @@
     <td><%= user.introduction %></td>
   </tr>
 </table>
-<% if user.id == current_user.id %>
-  <%= link_to edit_user_path(user), class: "btn btn-default btn-block edit_user_#{user.id}" do %>
-  <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+<div class="row">
+  <% if user.id == current_user.id %>
+  <%= link_to edit_user_path(user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_#{user.id}" do %>
   <% end %>
 <% else %>
-  <%= link_to user_path(current_user), class: "btn btn-default btn-block user_#{current_user.id}" do %>
-  <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+  <%= link_to user_path(current_user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench user_#{current_user.id}" do %>
   <% end %>
 <% end %>
+</div>
 
 <h2> New book</h2>
-
+<div class="row">
 <%= form_for(book) do |f| %>
   <h5> Title</h5>
   <%= f.text_field :title, class: "col-xs-12 book_title" %>
@@ -30,3 +30,4 @@
   <%= f.text_area :opinion, class: "col-xs-12 book_body" %>
   <%= f.submit 'Create Book', class: "btn btn-primary btn-sm btn-block" %>
 <% end %>
+</div>

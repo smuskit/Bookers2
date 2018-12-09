@@ -1,5 +1,15 @@
 class BooksController < ApplicationController
 
+  before_action :authenticate_user!
+  before_action :correct_user, only: [:edit, :update]
+
+  	def correct_user
+	    @book = current_user.books.find_by(id: params[:id])
+	    unless @book
+	      redirect_to books_path
+	    end
+	end
+
 	def index
 		@books = Book.all
 		@book = Book.new

@@ -12,6 +12,6 @@ class User < ApplicationRecord
   validates :name, length: { in: 2..20 }
   validates :introduction, length: { in: 0..50 }, on: :update
 
-  validates :name,uniqueness: true
+  validates :name, uniqueness: true
 
 end

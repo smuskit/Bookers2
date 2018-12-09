@@ -1,6 +1,14 @@
 class UsersController < ApplicationController
 
   before_action :authenticate_user!, except: [:new] # users だけ弾く（トップは除外できる）
+  before_action :correct_user, only: [:edit, :update]
+
+  def correct_user
+      @user = User.find(params[:id])
+      unless @user == current_user
+        redirect_to books_path
+      end
+  end
 
   def index
   	@users = User.all
